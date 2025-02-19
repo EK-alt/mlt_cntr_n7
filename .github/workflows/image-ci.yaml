@@ -73,4 +73,14 @@ jobs:
           file: ./ts-frontend/Dockerfile.3
           context: ./ts-frontend
           push: true
-          tags: ${{ steps.meta.outputs.tags }}        
+          tags: ${{ steps.meta.outputs.tags }}   
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'ek480/ts-frontend-simple-n7:latest'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL'     
