@@ -66,4 +66,11 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-        
+
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          file: ./ts-frontend/Dockerfile.3
+          context: ./ts-frontend
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}        
