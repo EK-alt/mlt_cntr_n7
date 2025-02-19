@@ -24,7 +24,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ek480/try-frontend-simple:${{ github.ref }}
+            ek480/ts-frontend-simple-n7
           
           # Always tags the image as latest (e.g., ek480/try-frontend-simple:latest).
           # Useful for setting a default tag when pulling the image.
