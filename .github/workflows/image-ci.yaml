@@ -1,0 +1,14 @@
+name: image-ci
+
+on:
+  push:
+    branches:
+      - 'github-action'
+    tages:
+      - 'v*'
+job:
+  build-tag-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        used: actions/checkout@v3
