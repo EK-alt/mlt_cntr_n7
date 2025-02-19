@@ -8,7 +8,10 @@ on:
       - 'v*'
 jobs:
   build-tag-push:
+  # Runs on an Ubuntu-based GitHub Actions runner (ubuntu-latest).
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+        # Checks out (clones) your repository into the runner using
+        # This step allows the runner to access your repository's files.
+      - name: Checkout_Mine
         uses: actions/checkout@v3
