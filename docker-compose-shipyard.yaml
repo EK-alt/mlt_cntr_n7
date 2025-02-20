@@ -3,7 +3,7 @@ services:
     labels:
       shipyard.primary-route: true
       shipyard.route: '/'
-    image: ts-frontend-simple-img-${TRY_VERSION_TS_SIMPLE}
+    image: ts-frontend-simple-img-n1
     build:
       context: ./ts_frontend
       dockerfile: Dockerfile.3
@@ -30,7 +30,7 @@ services:
     labels:
       shipyard.route: '/'
       shipyard.route.rewrite: true
-    image: actix-webapp-img-${TRY_VERSION}
+    image: actix-webapp-img-n3
     build:
       context: ./actix-webapp
       dockerfile: Dockerfile
@@ -47,8 +47,6 @@ services:
 
   mysqldb:
     container_name: mysqldb
-    # networks:
-    #   - n1-network
     restart: always
     ports:
       - 33071:3307
