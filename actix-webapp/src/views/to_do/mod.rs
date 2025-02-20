@@ -59,7 +59,9 @@ async fn get_date_time_from_edge_db() -> String {
     let pem_content = fs::read_to_string(cert_path).expect("Failed to read file");
     println!("pem_content {}", pem_content);
 
-    let conn = gel_tokio::create_client().await.expect("Client should have initiated");
+    let conn = gel_tokio::create_client()
+        .await
+        .expect("Client should have initiated");
 
     // let conn = gel_tokio::create_client(&gel_tokio::Options {
     //     host: "localhost".to_string(), // The Docker host IP (NOT localhost)
@@ -73,14 +75,16 @@ async fn get_date_time_from_edge_db() -> String {
     // .expect("Client should have initiated");
     let val = conn
         .query_required_single::<i64, _>("SELECT 7*8", &())
-        .await.expect("Failed to get 7*8");
+        .await
+        .expect("Failed to get 7*8");
 
     println!("7*8 is: {}", val);
 
     // let timestamp = get_current_timestamp(&conn).await?;
     let result: String = conn
-    .query_required_single("SELECT <str>datetime_of_statement()", &())
-    .await.expect("Failed to get current timestamp");
+        .query_required_single("SELECT <str>datetime_of_statement()", &())
+        .await
+        .expect("Failed to get current timestamp");
 
     println!("Current UTC timestamp: {}", result);
     // println!("EdgeDB Timestamp: {}", timestamp);
@@ -105,15 +109,14 @@ async fn getDateTime() -> impl Responder {
     //     eprintln!("Error: {:?}", e);
     // }
 
-
     // let join_handle = tokio::spawn(async {
     //     if let Err(e) = get_date_time_from_edge_db().await {
     //         eprintln!("Error in task: {:?}", e);
     //     }
     // });
-    let join_handle = tokio::spawn(async {
-       let tm = get_date_time_from_edge_db().await;
-    });
+    // let join_handle = tokio::spawn(async {
+    //    let tm = get_date_time_from_edge_db().await;
+    // });
 
     let DATABASE_URL = env::var("DATABASE_URL").expect("DATABASE_URL environment variable not set");
     // let DATABASE_URL = "postgres://postgres:foobarbaz@db:5432/postgres".to_string();
@@ -131,7 +134,7 @@ async fn getDateTime() -> impl Responder {
 
     let dateTime = DateTime {
         // now: now_utc.to_string(),
-        now: result.to_string() ,
+        now: result.to_string(),
         api: "actix-web".to_string(),
     };
 
