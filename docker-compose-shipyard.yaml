@@ -5,7 +5,7 @@ services:
       shipyard.route: '/'
     image: ts-frontend-simple-img-n1
     build:
-      context: ./ts_frontend
+      context: ./ts-frontend
       dockerfile: Dockerfile.3
     init: true
     networks:
