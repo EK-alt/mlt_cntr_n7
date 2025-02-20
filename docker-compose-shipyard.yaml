@@ -1,17 +1,18 @@
 services:
-  ts-fontend-simple-n1:
+  ts-fontend-prod-n1:
     labels:
       shipyard.primary-route: true
       shipyard.route: '/'
-    image: ts-frontend-simple-img-n1
+    image: ts-frontend-prod-img-n1
     build:
       context: ./ts-frontend
-      dockerfile: Dockerfile.3
+      dockerfile: Dockerfile.5
     init: true
     networks:
       - app_network
     ports:
-      - 5173:8027
+      - 81:8181
+    restart: unless-stopped
 
 networks:
   app_network:
