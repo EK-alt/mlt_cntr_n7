@@ -22,12 +22,12 @@ RUN rustup component add rustfmt
 COPY . .
 
 # Ensure dependencies are downloaded and compiled
-# RUN cargo fetch
-# RUN cargo build --locked --release && \
-#     cp ./target/release/$APP_NAME /bin/server
+RUN cargo fetch
+RUN cargo build --locked --release && \
+    cp ./target/release/$APP_NAME /bin/server
 
 # CMD /app/target/release/${APP_NAME}
-CMD ["/bin/sh", "-c", "cargo run"]
+# CMD ["/bin/sh", "-c", "cargo run"]
 # COPY /bin/server /bin/
 
-# CMD [ "/bin/server" ]
+CMD [ "/bin/server" ]
