@@ -60,6 +60,18 @@ services:
     # network_mode: service:mysqldb
     restart: unless-stopped
 
+  ts-frontend-prod:
+    image: ts-frontend-prod
+    build:
+      context: ./ts-frontend
+      dockerfile: Dockerfile.5
+    init: true
+    networks:
+      - app_network
+    ports:
+      - 81:8181
+    restart: unless-stopped
+
   mysqldb:
     container_name: mysqldb
     # networks:
