@@ -89,3 +89,5 @@ services:
 volumes:
   mysql_data:
   edgedb_rust_data: # Named volume for EdgeDB data
+networks:
+  app_network:
