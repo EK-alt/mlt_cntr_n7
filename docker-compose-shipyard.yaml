@@ -8,19 +8,6 @@ services:
       context: ./ts_frontend
       dockerfile: Dockerfile.3
     init: true
-    volumes:
-      - type: bind
-        source: ./ts-frontend/
-        target: /usr/src/app/
-      - .:/workspace:cached
-      # Avoids bringing node modules into the container
-      - type: volume
-        target: /usr/src/app/node_modules
-      # No need because above all sources from withing ts-frontend was already targeted into /usr/src/app/
-      # using just for in case
-      - type: bind
-        source: ./ts-frontend/webpack.devserver.conf.js
-        target: /usr/src/app/webpack.devserver.conf.js
     networks:
       - app_network
     ports:
