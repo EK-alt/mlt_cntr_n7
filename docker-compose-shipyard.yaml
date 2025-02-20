@@ -14,5 +14,20 @@ services:
       - 81:8181
     restart: unless-stopped
 
+  actix-webapp-n3:
+    labels:
+      shipyard.route: '/actix-webapp'
+      shipyard.route.rewrite: true
+    image: actix-webapp-img-n1
+    build:
+      context: ./actix-webapp
+      dockerfile: Dockerfile
+    init: true
+    networks:
+      - app_network
+    ports:
+      - 9093:9093
+    restart: unless-stopped
+
 networks:
   app_network:
